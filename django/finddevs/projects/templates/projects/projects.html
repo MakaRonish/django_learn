@@ -1,0 +1,49 @@
+{% extends 'main.html'%}
+
+{% block content%}
+
+
+<h1>Project Template</h1>
+<p>hello, You are on {{Page}} page rn</p>
+
+{% if Number > 10 %}
+<p> Your number:{{Number}} is greater than 10</p>
+
+{% elif Number == 10%}
+<p> Your number:{{Number}} is equal to 10</p>
+
+{% else%}
+<p> Your number:{{Number}} is less than 10</p>
+
+{%endif%}
+
+<hr>
+<h1>Projects</h1>
+<ul>
+    {% for projectsList in projectsList%}
+    <li>title:<a href="{% url 'project' projectsList.id %}">{{projectsList.title}}<a>
+    </li>
+
+
+    {%endfor%}
+</ul>
+<Table border="1">
+    <tr>
+        <th>ID</th>
+        <th>title</th>
+        <th>Description</th>
+    <tr>
+
+        {% for projectsList in projectsList%}
+    <tr>
+        <td>{{projectsList.id}}</td>
+        <td>{{projectsList.title}}</td>
+        <td>{{projectsList.description}}</td>
+    </tr>
+
+
+    {%endfor%}
+
+</Table>
+
+{% endblock content %}
