@@ -23,8 +23,14 @@ projectsList = [
 def projects(request):
     page = "Project "
     number = 10
+    rangee = [i for i in range(1, 11)]
     print(page)
-    context = {"Page": page, "Number": number, "projectsList": projectsList}
+    context = {
+        "Page": page,
+        "Number": number,
+        "projectsList": projectsList,
+        "range": rangee,
+    }
     return render(request, "projects/projects.html", context)
 
 
