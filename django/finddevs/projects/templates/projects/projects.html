@@ -2,7 +2,7 @@
 
 {% block content%}
 
-
+<!-- 
 <h1>Project Template</h1>
 <p>hello, You are on {{Page}} page rn</p>
 
@@ -15,30 +15,35 @@
 {% else%}
 <p> Your number:{{Number}} is less than 10</p>
 
-{%endif%}
+{%endif%} -->
 
 <hr>
-<h1>Projects</h1>
+<!-- <h1>Projects</h1>
 <ul>
     {% for projectsList in projectsList%}
-    <li>title:<a href="{% url 'project' projectsList.id %}">{{projectsList.title}}<a>
+    <li>title:<a href="{% url 'project' projectsList.id %}">{{projectsList.title}},{{projectsList.created}}<a>
     </li>
 
 
     {%endfor%}
-</ul>
-<h2>gg</h2>
+</ul> -->
+
+<!-- <h2>gg</h2>
 <ul>
     <li>{{range}}</li>
     {%for i in range%}
     <li>{{i}}</li>
     {%endfor%}
-</ul>
+</ul> -->
 <Table border="1">
     <tr>
         <th>ID</th>
         <th>title</th>
         <th>Description</th>
+        <th>vote</th>
+        <th>date</th>
+        <th>links</th>
+
     <tr>
 
         {% for projectsList in projectsList%}
@@ -46,6 +51,10 @@
         <td>{{projectsList.id}}</td>
         <td>{{projectsList.title}}</td>
         <td>{{projectsList.description}}</td>
+        <td>{{projectsList.vote_total}}</td>
+        <td>{{projectsList.created}}</td>
+        <td><a href="{% url 'project' projectsList.id%}">link</a></td>
+
     </tr>
 
 
