@@ -43,6 +43,7 @@
         <th>vote</th>
         <th>date</th>
         <th>links</th>
+        <th></th>
 
     <tr>
 
@@ -54,6 +55,9 @@
         <td>{{projectsList.vote_total}}</td>
         <td>{{projectsList.created}}</td>
         <td><a href="{% url 'project' projectsList.id%}">link</a></td>
+        <td><a href="{% url 'update-project' projectsList.id%}">edit</a></td>
+        <td><a href="{% url 'delete-project' projectsList.id%}">delete</a></td>
+
 
     </tr>
 
