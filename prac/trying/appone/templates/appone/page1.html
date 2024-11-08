@@ -1,5 +1,24 @@
 {% extends 'main.html'%}
 {% block content%}
 <h1>Page1</h1>
+<table border="1">
+    <tr>
+        <th>title</th>
+        <th>description</th>
+        <th>created</th>
+    </tr>
+
+    {%for items in item%}
+    <tr>
+        <td>{{items.title}}</td>
+        <td>{{items.description}}</td>
+        <td>{{items.created}}</td>
+    </tr>
+    {%endfor%}
+
+
+
+
+</table>
 <a href="{% url 'page2'%}">next page</a>
 {% endblock %}
