@@ -1,8 +1,11 @@
 from django.shortcuts import render
+from . import models
 
 
 def home(request):
-    return render(request, "main/block1.html")
+    books = models.Books_table.objects.all()
+    context = {"books": books}
+    return render(request, "main/block1.html", context)
 
 
 def page2(request):

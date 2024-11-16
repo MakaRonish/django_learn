@@ -3,6 +3,29 @@
 {%block content%}
 
 <h1>Block 1</h1>
+<table border="1">
+    <tr>
+        <th>id</th>
+        <th>title</th>
+        <th>description</th>
+        <th>price</th>
+        <th>publication date</th>
+        <th>publisher</th>
+        <th>Availability</th>
+    </tr>
+    {%for book in books%}
+    <tr>
+        <th>{{book.id}}</th>
+        <th>{{book.title}}</th>
+        <th>{{book.description}}</th>
+        <th>{{book.price}}</th>
+        <th>{{book.publication_date}}</th>
+        <th>{{book.publisher}}</th>
+        <th>{{book.is_available}}</th>
+
+    </tr>
+    {%endfor%}
+</table>
 <a href="{%url 'page2'%}">block 2</a>
 <a href="{%url 'view'%}">view</a>
 {%endblock%}
