@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from . import models
+from .form import Bookform, Publisherform
 
 
 def home(request):
@@ -10,6 +11,18 @@ def home(request):
 
 def page2(request):
     return render(request, "main/block2.html")
+
+
+def add_book(request):
+    book_form = Bookform()
+    context = {"book_form": book_form}
+    if request.method == "POST":
+        form = Bookform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("root")
+
+    return render(request, "main/bookForm.html", context)
 
 
 # Create your views here.

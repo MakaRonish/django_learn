@@ -1,0 +1,13 @@
+{%extends 'main.html'%}
+
+{%block content%}
+
+<form method="POST">
+    {%csrf_token%}
+    {{book_form.as_p}}
+    <input type="submit" value="submit">
+</form>
+<a href="{%url 'root'%}">block 1</a>
+
+
+{%endblock%}
