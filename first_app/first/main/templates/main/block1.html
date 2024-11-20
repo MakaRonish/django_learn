@@ -12,6 +12,7 @@
         <th>publication date</th>
         <th>publisher</th>
         <th>Availability</th>
+        <th>option</th>
     </tr>
     {%for book in books%}
     <tr>
@@ -22,6 +23,7 @@
         <th>{{book.publication_date}}</th>
         <th>{{book.publisher}}</th>
         <th>{{book.is_available}}</th>
+        <td><a href="">delete</a>,<a href="{%url 'edit' book.id%}">edit</a></td>
 
     </tr>
     {%endfor%}
