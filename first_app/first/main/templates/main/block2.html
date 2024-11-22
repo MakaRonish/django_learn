@@ -1,4 +1,30 @@
 <h2>Block 2</h2>
+<hr>
+
+<h1>{{book.title}}</h1>
+<p>{{book.description}}</p>
+
+<p>Price: {{book.price}}</p>
+<p>Availability: {{book.is_available}}</p>
+<p>publisher: {{book.publisher}}</p>
+
+<hr>
+<h1>Publisher table</h1>
+<table>
+    <tr>
+        <th>name</th>
+        <th>website</th>
+        <th>contact</th>
+    </tr>
+    {%for p in publisher%}
+    <tr>
+        <td>{{p.name}}</td>
+        <td>{{p.website}}</td>
+        <td>{{p.contact_email}}</td>
+
+    </tr>
+    {%endfor%}
+</table>
 <a href="{%url 'root'%}">block 2</a>
 <a href="{%url 'view'%}">view</a>
 <a href="{%url 'AddBook'%}">add Book</a>

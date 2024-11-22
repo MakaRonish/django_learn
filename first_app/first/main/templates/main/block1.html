@@ -13,6 +13,7 @@
         <th>publisher</th>
         <th>Availability</th>
         <th>option</th>
+        <th>page</th>
     </tr>
     {%for book in books%}
     <tr>
@@ -23,12 +24,13 @@
         <th>{{book.publication_date}}</th>
         <th>{{book.publisher}}</th>
         <th>{{book.is_available}}</th>
-        <td><a href="">delete</a>,<a href="{%url 'edit' book.id%}">edit</a></td>
+        <td><a href="{%url 'delete' book.id%}">delete</a>,<a href="{%url 'edit' book.id%}">edit</a></td>
+        <td><a href="{%url 'page2' book.id%}">block 2</a></td>
 
     </tr>
     {%endfor%}
 </table>
-<a href="{%url 'page2'%}">block 2</a>
+
 <a href="{%url 'view'%}">view</a>
 <a href="{%url 'AddBook'%}">add Book</a>
 {%endblock%}
