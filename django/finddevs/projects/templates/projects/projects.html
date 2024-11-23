@@ -98,8 +98,8 @@
                                 alt="project thumbnail" />
                             <div class="card__body">
                                 <h3 class="project__title">{{projectsList.title}}</h3>
-                                <p><a class="project__author" href="{%url 'project' projectsList.id%}">By Dennis
-                                        Ivanov</a></p>
+                                <p><a class="project__author" href="{%url 'project' projectsList.id%}">By
+                                        {{projectsList.owner.name}}</a></p>
                                 <p class="project--rating">
                                     <span style="font-weight: bold;">{{projectsList.vote_ratio}}%</span> Postitive
                                     Feedback ({{projectsList.vote_total}}) Vote{{projectsList.vote_total|pluralize:"s"}}
