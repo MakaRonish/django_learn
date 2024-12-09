@@ -53,7 +53,7 @@ def loginUser(request):
 
 def logoutUser(request):
     logout(request)
-    messages.error(request, "Log out complete")
+    messages.info(request, "Log out complete")
     return redirect("login")
 
 
