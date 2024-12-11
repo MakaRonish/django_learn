@@ -3,6 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from .models import Profile, Skill
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from .forms import CustomUserCreationForm
 
@@ -75,6 +76,18 @@ def registerUser(request):
 
     context = {"page": page, "form": form}
     return render(request, "users/login_register.html", context)
+
+
+@login_required(login_url="login")
+def userAccount(request):
+    profile = request.user.profile
+    Skills = profile.skill_set.all()
+
+    context = {
+        "profile": profile,
+        "Skills": Skills,
+    }
+    return render(request, "users/account.html", context)
 
 
 # Create your views here.
