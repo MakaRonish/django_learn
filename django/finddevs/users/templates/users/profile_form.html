@@ -1,25 +1,16 @@
-{%extends 'main.html'%}
+{% extends 'main.html'%}
 {%block content%}
+<h1>edit</h1>
 
-<!-- <h1>Project Form</h1>
-<form action="" method="POST" enctype="multipart/form-data">
-    {%csrf_token%}
-    {{form.as_p}} wrap in p tag-->
-<!-- <input type="submit">
-
-</form>  -->
-
-<!-- Main Section -->
 <main class="formPage my-xl">
     <div class="content-box">
         <div class="formWrapper">
-            <a class="backButton" href="#"><i class="material-symbols-outlined">arrow_back</i></a>
+            <a class="backButton" href="{%url 'account' %}"><i class="material-symbols-outlined">arrow_back</i></a>
             <br>
 
-            <form class="form" method="POST" enctype="multipart/form-data">
+            <form class="form" action="{%url 'edit-account'%}" method="POST" enctype="multipart/form-data">
                 {%csrf_token%}
-
-                {%for feild in form%}
+                {% for feild in form%}
                 <!-- Input:Text -->
                 <div class="form__field">
                     <label for="formInput#text">{{feild.label}} </label>
@@ -33,5 +24,4 @@
         </div>
     </div>
 </main>
-
-{%endblock %}
+{%endblock content%}
