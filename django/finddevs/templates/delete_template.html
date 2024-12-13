@@ -1,23 +1,20 @@
 {%extends 'main.html'%}
+
 {%block content%}
 <main class="formPage my-xl">
     <div class="content-box">
         <div class="formWrapper">
-            <a class="backButton" href="{% url 'account'%}"><i class="material-symbols-outlined">arrow_back</i></a>
+            <a class="backButton" href="{{request.GET.next}}"><i class="material-symbols-outlined">arrow_back</i></a>
             <br>
 
             <form class="form" method="POST">
                 {%csrf_token%}
-                {% for feild in form%}
-                <div class="form__field">
-                    <label for="formInput#text">{{feild.label}} </label>
-                    {{feild}}
-                </div>
-                {%endfor%}
+                <p>Are you sure you want to delete "{{object}}"?</p>
+                <a class="btn btn--sub btn--lg  my-md" href="{{request.GET.next}}">Decline</a>
 
                 <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
             </form>
         </div>
     </div>
 </main>
-{%endblock content%}
+{%endblock%}
