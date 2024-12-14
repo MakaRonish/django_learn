@@ -7,11 +7,16 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import CustomUserCreationForm, ProfileForm, SkillForm
 
+from django.db.models import Q
+
+from .utils import searchProfiles
+
 
 def profiles(request):
-    profiles = Profile.objects.all()
-    Skills = Skill.objects.all()
-    context = {"profiles": profiles, "skills": Skills}
+    profiles, search_query = searchProfiles(request)
+
+    # profiles = Profile.objects.all()
+    context = {"profiles": profiles, "search_query": search_query}
     return render(request, "users/profiles.html", context)
 
 

@@ -4,6 +4,9 @@ from .models import Project, Review, Tag
 from .forms import ProjectForm
 from django.contrib.auth.decorators import login_required
 
+from django.db.models import Q
+from .utils import searchProjects
+
 
 # projectsList = [
 #     {
@@ -25,17 +28,9 @@ from django.contrib.auth.decorators import login_required
 
 
 def projects(request):
-    projects = Project.objects.all()
-    page = "Project "
-    number = 10
-    rangee = [i for i in range(1, 11)]
-    print(page)
-    context = {
-        "Page": page,
-        "Number": number,
-        "projectsList": projects,
-        "range": rangee,
-    }
+    projects, search_query = searchProjects(request)
+
+    context = {"projectsList": projects, "search_query": search_query}
     return render(request, "projects/projects.html", context)
 
 
