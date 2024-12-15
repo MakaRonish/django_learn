@@ -9,14 +9,22 @@ from .forms import CustomUserCreationForm, ProfileForm, SkillForm
 
 from django.db.models import Q
 
-from .utils import searchProfiles
+from .utils import searchProfiles, paginateProfiles
+
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 def profiles(request):
     profiles, search_query = searchProfiles(request)
 
+    profiles, custom_range = paginateProfiles(request, profiles, 1)
+
     # profiles = Profile.objects.all()
-    context = {"profiles": profiles, "search_query": search_query}
+    context = {
+        "profiles": profiles,
+        "search_query": search_query,
+        "custom_range": custom_range,
+    }
     return render(request, "users/profiles.html", context)
 
 

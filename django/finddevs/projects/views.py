@@ -5,7 +5,9 @@ from .forms import ProjectForm
 from django.contrib.auth.decorators import login_required
 
 from django.db.models import Q
-from .utils import searchProjects
+from .utils import searchProjects, paginateProjects
+
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 # projectsList = [
@@ -30,7 +32,36 @@ from .utils import searchProjects
 def projects(request):
     projects, search_query = searchProjects(request)
 
-    context = {"projectsList": projects, "search_query": search_query}
+    # page = request.GET.get("page")  # query string
+    # result = 3
+    # paginator = Paginator(projects, result)
+
+    # try:
+    #     projects = paginator.page(page)
+    # except PageNotAnInteger:
+    #     page = 1
+    #     projects = paginator.page(page)
+    # except EmptyPage:
+    #     page = paginator.num_pages  # gives the number of page
+    #     projects = paginator.page(page)
+
+    # leftIndex = int(page) - 4
+    # if leftIndex < 1:
+    #     leftIndex = 1
+
+    # rightIndex = int(page) + 5
+    # if rightIndex > paginator.num_pages:
+    #     rightIndex = paginator.num_pages
+
+    # custom_range = range(leftIndex, rightIndex + 1)
+
+    projects, custom_range, paginator = paginateProjects(request, projects, 9)
+    context = {
+        "projectsList": projects,
+        "search_query": search_query,
+        "paginator": paginator,
+        "custom_range": custom_range,
+    }
     return render(request, "projects/projects.html", context)
 
 
