@@ -1,26 +1,51 @@
 
-//GET SEARCH FORM AND PAGE LINKS
-let searchForm = document.getElementById('searchForm')
-let pageLinks = document.getElementsByClassName('page-link')
+//search form and page links
+let searchForm = document.getElementById('searchForm');
+let pageLinks = document.getElementsByClassName('page-link');
 
-//ENSURE SEARCH FORM EXISTS
+//ensure search form exist 
+
 if (searchForm) {
     for (let i = 0; pageLinks.length > i; i++) {
         pageLinks[i].addEventListener('click', function (e) {
-            e.preventDefault()
+            e.preventDefault();
 
-            //GET THE DATA ATTRIBUTE
-            let page = this.dataset.page
+            //get the data attribute now
+            let page = this.dataset.page;
+            console.log(page)
 
-            //ADD HIDDEN SEARCH INPUT TO FORM
-            searchForm.innerHTML += `<input value=${page} name="page" hidden/>`
+            //add hidden search input to form
+            searchForm.innerHTML += `<input value=${page} name="page" hidden/>`;
 
-
-            //SUBMIT FORM
+            //submit
             searchForm.submit()
         })
     }
+
 }
+
+//GET SEARCH FORM AND PAGE LINKS
+// let searchForm = document.getElementById('searchForm')
+// let pageLinks = document.getElementsByClassName('page-link')
+
+// //ENSURE SEARCH FORM EXISTS
+// if (searchForm) {
+//     for (let i = 0; pageLinks.length > i; i++) {
+//         pageLinks[i].addEventListener('click', function (e) {
+//             e.preventDefault()
+
+//             //GET THE DATA ATTRIBUTE
+//             let page = this.dataset.page
+
+//             //ADD HIDDEN SEARCH INPUT TO FORM
+//             searchForm.innerHTML += `<input value=${page} name="page" hidden/>`
+
+
+//             //SUBMIT FORM
+//             searchForm.submit()
+//         })
+//     }
+// }
 
 
 
