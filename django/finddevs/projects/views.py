@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Project, Review, Tag
-from .forms import ProjectForm
+from .forms import ProjectForm, ReviewForm
 from django.contrib.auth.decorators import login_required
 
 from django.db.models import Q
 from .utils import searchProjects, paginateProjects
 
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+
+from django.contrib import messages
 
 
 # projectsList = [
@@ -68,6 +70,20 @@ def projects(request):
 def project(request, pk):
     projectObj = Project.objects.get(id=pk)
     tags = projectObj.tags.all()
+    form = ReviewForm()
+    context = {"projectObj": projectObj, "tags": tags, "form": form}
+
+    if request.method == "POST":
+        form = ReviewForm(request.POST)
+        review = form.save(commit=False)
+        review.project = projectObj
+        review.owner = request.user.profile
+        review.save()
+
+        projectObj.getVoteCount
+
+        messages.success(request, "Review submitted")
+        return redirect("project", pk=projectObj.id)
 
     # projectObj = None
     # for i in projectsList:
@@ -75,11 +91,7 @@ def project(request, pk):
     #         projectObj = i
     # print("hello")
     # print(projectObj)
-    return render(
-        request,
-        "projects/single-project.html",
-        {"projectObj": projectObj, "tags": tags},
-    )
+    return render(request, "projects/single-project.html", context)
 
 
 # Create your views here.
