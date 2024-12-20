@@ -4,10 +4,13 @@ from django.dispatch import receiver
 from django.contrib.auth.models import User
 from .models import Profile
 
+from django.core.mail import send_mail
+from django.conf import settings
+import random
+
 
 # @receiver(post_save, sender=Profile)
 def createProfile(sender, instance, created, **kwargs):
-    print("trigger")
 
     if created:
         user = instance
@@ -16,6 +19,17 @@ def createProfile(sender, instance, created, **kwargs):
             username=user.username,
             email=user.email,
             name=user.first_name,
+        )
+        otp = random.randint(100000, 999999)
+        subject = "Welcome to Finddevs"
+        message = f"This is your verification code do not share it with any one {otp}"
+
+        send_mail(
+            subject,
+            message,
+            settings.EMAIL_HOST_USER,
+            [profile.email],
+            fail_silently=False,
         )
 
 
