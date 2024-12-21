@@ -6,7 +6,6 @@ from .models import Profile
 
 from django.core.mail import send_mail
 from django.conf import settings
-import random
 
 
 # @receiver(post_save, sender=Profile)
@@ -20,9 +19,8 @@ def createProfile(sender, instance, created, **kwargs):
             email=user.email,
             name=user.first_name,
         )
-        otp = random.randint(100000, 999999)
         subject = "Welcome to Finddevs"
-        message = f"This is your verification code do not share it with any one {otp}"
+        message = "Gald to see you here"
 
         send_mail(
             subject,
